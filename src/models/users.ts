@@ -62,7 +62,7 @@ export class Users {
   }
 
   // Get User by username
-  async getProductsByCategory(username: string): Promise<User> {
+  async getUserByUsername(username: string): Promise<User> {
     try {
       // @ts-ignore
       const conn = await client.connect();
