@@ -47,7 +47,7 @@ export class Users {
       // @ts-ignore
       const conn = await client.connect();
       const sql =
-        "INSERT INTO users(firstName, lastName, username, password) VALUES($1, $2, $3) RETURNING *";
+        "INSERT INTO users(firstName, lastName, username, password) VALUES($1, $2, $3, $4) RETURNING *";
       const result = await conn.query(sql, [
         user.firstName,
         user.lastName,
