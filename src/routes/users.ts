@@ -18,7 +18,11 @@ router.get("/", auth, async (req: Request, res: Response) => {
   let allUsers = await users.getUsers();
 
   return res.json({
-    users: allUsers
+    users: [
+      ...allUsers.map(user => {
+        return { ...user, password: "" };
+      })
+    ]
   });
 });
 
@@ -29,7 +33,7 @@ router.get("/:id", auth, async (req: Request, res: Response) => {
   let user = await users.getUser(Number(id));
 
   return res.json({
-    user
+    user: { ...user, password: "" }
   });
 });
 

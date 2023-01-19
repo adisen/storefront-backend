@@ -8,22 +8,23 @@ These are the notes from a meeting with the frontend developer that describe wha
 
 #### Products
 
-- Index
-- Show
-- Create [token required]
-- [OPTIONAL] Top 5 most popular products
-- [OPTIONAL] Products by category (args: product category)
+- Index: GET /products
+- Show: GET /products/:id
+- Create: POST /products [token required]
+  - Requires the product objects {category: string, name: string, price: integer}
 
 #### Users
 
-- Index [token required]
-- Show [token required]
-- Create N[token required]
+- Index: GET /users [token required]
+- Show: GET /users/:id [token required]
+- Create User: POST /users/
+  - Requires the user object {firstName: string, lastName: string, username: string, password: string}
 
 #### Orders
 
-- Current Order by user (args: user id)[token required]
-- [OPTIONAL] Completed Orders by user (args: user id)[token required]
+- Current Order by user: GET /orders [token required]
+- Create Order: POST /orders
+  - Requires the order object {product_id: number, quantity: number}
 
 ## Data Shapes
 
@@ -32,7 +33,7 @@ These are the notes from a meeting with the frontend developer that describe wha
 - id
 - name
 - price
-- [OPTIONAL] category
+- category
 
 #### User
 
@@ -40,11 +41,12 @@ These are the notes from a meeting with the frontend developer that describe wha
 - firstName
 - lastName
 - password
+- username
 
 #### Orders
 
 - id
-- id of each product in the order
+- id of each product in the order(product_id)
 - quantity of each product in the order
 - user_id
 - status of order (active or complete)

@@ -34,20 +34,6 @@ export class Orders {
     }
   }
 
-  // Show
-  // async getSingleOrder(id: number): Promise<Order> {
-  //   try {
-  //     // @ts-ignore
-  //     const conn = await client.connect();
-  //     const sql = "SELECT * FROM orders WHERE id=$1";
-  //     const result = await conn.query(sql, [id]);
-  //     conn.release();
-  //     return result.rows[0];
-  //   } catch (error) {
-  //     throw new Error(`Cannot get single user ${error}`);
-  //   }
-  // }
-
   // Create [token required]
   async createOrder({
     product_id,
@@ -59,7 +45,8 @@ export class Orders {
       // @ts-ignore
       const conn = await client.connect();
       const sql =
-        "INSERT INTO orders(quantity, status, product_id, user_id,) VALUES($1, $2, $3, $4) RETURNING *";
+        "INSERT INTO orders(quantity, status, product_id, user_id) VALUES($1, $2, $3, $4) RETURNING *";
+
       const result = await conn.query(sql, [
         quantity,
         status,
