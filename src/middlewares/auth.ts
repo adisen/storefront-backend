@@ -1,11 +1,18 @@
 import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
+import { User } from "../models/users";
 
-interface ReqWUser extends Request {
-  user: any;
+// interface ReqWUser extends Request {
+//   user: any;
+// }
+
+declare module "jsonwebtoken" {
+  export interface JwtPayload {
+    user?: User;
+  }
 }
 
-const verifyToken = (req: ReqWUser, res: Response, next: NextFunction) => {
+const verifyToken = (req: Request, res: Response, next: NextFunction) => {
   // Get token
   const token = req.headers["x-access-token"];
 
@@ -18,8 +25,11 @@ const verifyToken = (req: ReqWUser, res: Response, next: NextFunction) => {
 
   // Verify token
   try {
-    const decoded = jwt.verify(String(token), String(process.env.JWT_SECRET));
-    req.user = decoded;
+    const decoded = <jwt.JwtPayload>(
+      jwt.verify(String(token), String(process.env.JWT_SECRET))
+    );
+
+    req.user = decoded.user;
   } catch (error) {
     return res.status(401).json({
       errors: ["Invalid token"]

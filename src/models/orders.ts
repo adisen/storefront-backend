@@ -14,12 +14,12 @@ export enum OrderStatus {
 export type Order = {
   id?: number;
   quantity: number;
-  status: OrderStatus;
+  status?: OrderStatus;
   product_id: number;
   user_id: number;
 };
 
-export class Users {
+export class Orders {
   /// Index
   async getUserOrder(userId: number): Promise<Order[]> {
     try {
@@ -49,17 +49,22 @@ export class Users {
   // }
 
   // Create [token required]
-  async createOrder(order: Order): Promise<Order> {
+  async createOrder({
+    product_id,
+    quantity,
+    user_id,
+    status = OrderStatus.ACTIVE
+  }: Order): Promise<Order> {
     try {
       // @ts-ignore
       const conn = await client.connect();
       const sql =
         "INSERT INTO orders(quantity, status, product_id, user_id,) VALUES($1, $2, $3, $4) RETURNING *";
       const result = await conn.query(sql, [
-        order.quantity,
-        order.status,
-        order.product_id,
-        order.user_id
+        quantity,
+        status,
+        product_id,
+        user_id
       ]);
       conn.release();
       return result.rows[0];

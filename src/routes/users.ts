@@ -77,7 +77,7 @@ router.post(
 
     // Construct and send a token
     const token = jwt.sign(
-      { ...user, password: "_" },
+      { user: { ...user, password: "_" } },
       String(process.env.JWT_SECRET)
     );
 
@@ -120,7 +120,7 @@ router.post(
 
     // Construct and send a token
     const token = jwt.sign(
-      { ...user, password: "_" },
+      { user: { ...user, password: "_" } },
       String(process.env.JWT_SECRET)
     );
 
