@@ -8,7 +8,7 @@ export type Product = {
   category: string;
 };
 
-export class MythicalWeapons {
+export class Products {
   /// Index
   async getProducts(): Promise<Product[]> {
     try {
