@@ -40,12 +40,12 @@ router.get("/:id", auth, async (req: Request, res: Response) => {
 // Register route
 router.post(
   "/register",
-  body("firstName").notEmpty().isLength({ min: 5, max: 50 }),
-  body("lastName").notEmpty().isLength({ min: 5, max: 50 }),
+  body("firstname").notEmpty().isLength({ min: 5, max: 50 }),
+  body("lastname").notEmpty().isLength({ min: 5, max: 50 }),
   body("username").notEmpty().isLength({ min: 5, max: 20 }),
   body("password").notEmpty().isLength({ min: 8 }),
   async (req: Request, res: Response) => {
-    const { firstName, lastName, username, password }: User = req.body; // Destructing
+    const { firstname, lastname, username, password }: User = req.body; // Destructing
 
     // Confirm that all values are not empty
     const errors = validationResult(req);
@@ -73,8 +73,8 @@ router.post(
 
     // Add user to DB
     user = await users.createUser({
-      firstName,
-      lastName,
+      firstname,
+      lastname,
       username,
       password: hashedPassword
     });

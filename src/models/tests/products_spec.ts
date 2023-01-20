@@ -2,6 +2,11 @@ import { Product, Products } from "../products";
 const products = new Products();
 
 describe("Products Model", () => {
+  // Clear DB after all
+  afterAll(async () => {
+    await products.deleteAllProducts();
+  });
+
   it("should have a getProducts() method", () => {
     expect(products.getProducts).toBeDefined();
   });

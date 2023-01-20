@@ -6,8 +6,8 @@ import client from "../database";
 
 export type User = {
   id?: number;
-  firstName: string;
-  lastName: string;
+  firstname: string;
+  lastname: string;
   username: string;
   password: string;
 };
@@ -47,10 +47,10 @@ export class Users {
       // @ts-ignore
       const conn = await client.connect();
       const sql =
-        "INSERT INTO users(firstName, lastName, username, password) VALUES($1, $2, $3, $4) RETURNING *";
+        "INSERT INTO users(firstname, lastname, username, password) VALUES($1, $2, $3, $4) RETURNING *";
       const result = await conn.query(sql, [
-        user.firstName,
-        user.lastName,
+        user.firstname,
+        user.lastname,
         user.username,
         user.password
       ]);
@@ -72,6 +72,20 @@ export class Users {
       return result.rows[0];
     } catch (error) {
       throw new Error(`Cannot get user by username: ${error}`);
+    }
+  }
+
+  // Delete all users
+  async deleteAllUsers(): Promise<void> {
+    try {
+      // @ts-ignore
+      const conn = await client.connect();
+      const sql = "DELETE FROM users";
+      await conn.query(sql);
+      conn.release();
+      // return result.rows;
+    } catch (error) {
+      throw new Error(`Cannot delete all users: ${error}`);
     }
   }
 }

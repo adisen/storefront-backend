@@ -70,4 +70,17 @@ export class Products {
       throw new Error(`Cannot get products by category: ${error}`);
     }
   }
+
+  async deleteAllProducts(): Promise<void> {
+    try {
+      // @ts-ignore
+      const conn = await client.connect();
+      const sql = "DELETE FROM products";
+      await conn.query(sql);
+      conn.release();
+      // return result.rows;
+    } catch (error) {
+      throw new Error(`Cannot get products by category: ${error}`);
+    }
+  }
 }

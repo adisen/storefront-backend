@@ -18,7 +18,7 @@ These are the notes from a meeting with the frontend developer that describe wha
 - Index: GET /users [token required]
 - Show: GET /users/:id [token required]
 - Create User: POST /users/
-  - Requires the user object {firstName: string, lastName: string, username: string, password: string}
+  - Requires the user object {firstname: string, lastname: string, username: string, password: string}
 
 #### Orders
 
@@ -38,8 +38,8 @@ These are the notes from a meeting with the frontend developer that describe wha
 #### User
 
 - id
-- firstName
-- lastName
+- firstname
+- lastname
 - password
 - username
 
