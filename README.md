@@ -22,7 +22,7 @@ First you need to rename your .env-example file to .env to setup the environment
 ### Database Setup
 
 - Make Sure that you have Postgres Installed on your local machine
-- Create two DBs (one for dev and one for test) e.g storefront and storefront_test
+- Create two DBs (one for dev and one for test) i.e storefront and storefront_test
 - Update your .env file with the corresponding data
 - Run `db migrate up` to apply DB migrations to your DB
 
@@ -41,3 +41,4 @@ Make sure to fill in the rest of the environment variables as appropriate
    ```bash
     localhost@user ~ npm test
    ```
+   To

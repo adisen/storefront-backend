@@ -65,7 +65,7 @@ export class Products {
       const sql = "SELECT * FROM products WHERE category=$1";
       const result = await conn.query(sql, [category]);
       conn.release();
-      return result.rows[0];
+      return result.rows;
     } catch (error) {
       throw new Error(`Cannot get products by category: ${error}`);
     }

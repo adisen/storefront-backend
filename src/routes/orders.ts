@@ -16,7 +16,7 @@ router.post(
   body("quantity").notEmpty().isNumeric(),
   async (req: Request, res: Response) => {
     const { product_id, quantity }: Order = req.body;
-    const userId: number = req.user?.id;
+    const userId: number = Number(req.user?.id);
 
     try {
       // Verify input
@@ -44,7 +44,7 @@ router.post(
 
 // Get Order by user
 router.get("/", async (req: Request, res: Response) => {
-  const userId: number = req.user?.id;
+  const userId: number = Number(req.user?.id);
 
   try {
     const allOrders = await orders.getUserOrder(userId);
