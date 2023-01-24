@@ -32,7 +32,7 @@ describe("Users Model", () => {
     });
 
     expect(result).toEqual({
-      id: 1,
+      id: 2,
       firstname: "John",
       lastname: "Doe",
       password: "JohnDoe@2023",
@@ -44,7 +44,7 @@ describe("Users Model", () => {
     const result = await users.getUsers();
     expect(result).toEqual([
       {
-        id: 1,
+        id: 2,
         firstname: "John",
         lastname: "Doe",
         password: "JohnDoe@2023",
@@ -54,9 +54,9 @@ describe("Users Model", () => {
   });
 
   it("getUser method should return a single user", async () => {
-    const result = await users.getUser(1);
+    const result = await users.getUser(2);
     expect(result).toEqual({
-      id: 1,
+      id: 2,
       firstname: "John",
       lastname: "Doe",
       password: "JohnDoe@2023",
@@ -67,7 +67,7 @@ describe("Users Model", () => {
   it("getUserByUsername should get a user by username", async () => {
     const result = await users.getUserByUsername("johndoe");
     expect(result).toEqual({
-      id: 1,
+      id: 2,
       firstname: "John",
       lastname: "Doe",
       password: "JohnDoe@2023",

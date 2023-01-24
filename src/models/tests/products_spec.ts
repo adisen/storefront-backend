@@ -31,7 +31,7 @@ describe("Products Model", () => {
     });
 
     expect(result).toEqual({
-      id: 1,
+      id: 2,
       category: "Food",
       name: "Poundo Poweder",
       price: 34
@@ -42,7 +42,7 @@ describe("Products Model", () => {
     const result = await products.getProducts();
     expect(result).toEqual([
       {
-        id: 1,
+        id: 2,
         category: "Food",
         name: "Poundo Poweder",
         price: 34
@@ -51,9 +51,9 @@ describe("Products Model", () => {
   });
 
   it("getProduct method should return a product", async () => {
-    const result = await products.getProduct(1);
+    const result = await products.getProduct(2);
     expect(result).toEqual({
-      id: 1,
+      id: 2,
       category: "Food",
       name: "Poundo Poweder",
       price: 34
@@ -64,7 +64,7 @@ describe("Products Model", () => {
     const result = await products.getProductsByCategory("Food");
     expect(result).toEqual([
       {
-        id: 1,
+        id: 2,
         category: "Food",
         name: "Poundo Poweder",
         price: 34

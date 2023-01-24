@@ -59,4 +59,18 @@ export class Orders {
       throw new Error(`Cannot create user: ${error}`);
     }
   }
+
+  // Delete all orders
+  async deleteAllOrders(): Promise<void> {
+    try {
+      // @ts-ignore
+      const conn = await client.connect();
+      const sql = "DELETE FROM orders";
+      const result = await conn.query(sql);
+      conn.release();
+      // return result.rows;
+    } catch (error) {
+      throw new Error(`Cannot get order by a user: ${error}`);
+    }
+  }
 }
